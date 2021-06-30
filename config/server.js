@@ -10,13 +10,15 @@ class Server {
         this.port = process.env.PORT;
 
         this.paths = {
-            usuarios: '/api/usuarios'
+            usuarios: '/api/usuarios',
+            espacios: '/api/espacios',
+            tareas: '/api/tareas'
         }
 
         // Middlewares
         this.middlewares();
 
-        // Rutas de mi aplicación
+        // Rutas
         this.routes();
     }
 
@@ -37,6 +39,8 @@ class Server {
 
     routes() {
         this.app.use(this.paths.usuarios, require('../routes/usuario-routes'));
+        this.app.use(this.paths.espacios, require('../routes/espacio-routes'));
+        this.app.use(this.paths.tareas, require('../routes/tarea-routes'));
     }
 
     listen() {
