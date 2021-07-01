@@ -6,7 +6,10 @@ const {
     listaEspacio,
     crearTarea,
     eliminarTarea,
-    editarTarea
+    editarTarea,
+    realizarTarea,
+    listaRealizadasEspacio,
+    realizadasUsuarioEspacio
 } = require ('../controllers/tarea-controller');
 
 
@@ -19,8 +22,11 @@ router.put('/editar-tarea/:id', editarTarea);
 
 router.delete('/eliminar-tarea/:id', eliminarTarea);
 
+router.post('/realizar-tarea', realizarTarea);
 
+router.get('/lista-tareas-realizadas-espacio/:id', listaRealizadasEspacio );
 
+router.get('/tareas-realizadas-usuario', realizadasUsuarioEspacio );
 
 
 
