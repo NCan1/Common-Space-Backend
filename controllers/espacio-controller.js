@@ -41,7 +41,7 @@ crearEspacio = (req, res) => {
 
 
 editarEspacio = (req, res) =>{
-    const {ID_ESpacio, Estado, ...resto} = req.body;
+    const {ID_Espacio, Estado, ...resto} = req.body;
     const {id} = req.params;  
     Espacio.editarEspacio(id, resto, (err, data) => {
       if (err)

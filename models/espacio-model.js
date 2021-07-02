@@ -42,9 +42,9 @@ Espacio.crearEspacio = (espacio, idUser, result) =>{
 };
 
 
-Espacio.editarEspacio = (idEspacio, espacio, result) => {
+Espacio.editarEspacio = (idEspacio, data, result) => {
     const consulta = ("UPDATE espacios SET ? WHERE ID_Espacio = "+ idEspacio);
-    sql.query(consulta, espacio, (err,res) =>{
+    sql.query(consulta, data, (err,res) =>{
         if(err){
             console.log("error: ", err);
             result (err, null);
