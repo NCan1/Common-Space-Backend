@@ -5,7 +5,7 @@ const Tarea = require('../models/tarea-model');
 
 listaEspacio = (req, res) => {
   const {id} = req.params;
-  Tarea.listaEspacio(id, (err, tareasDB) => {
+  Tarea.listaEspacio(id, (err, data) => {
     if (err) {
       return res.status(500).send({
         ok: false,
@@ -15,7 +15,7 @@ listaEspacio = (req, res) => {
     }
     res.status(200).send({
       ok: true,
-      tareas: tareasDB
+      tareas: data
     });
   });
 }
