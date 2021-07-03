@@ -92,10 +92,104 @@ eliminarUsuario = (req,res) =>{
 };
 
 
+buscarMailUsuario = (req, res) => {
+  const {mailConsultado} = req.body;
+  Usuario.buscarMailUsuario(mailConsultado, (err, data) => {
+    if (err) {
+      return res.status(500).send({
+        ok: false,
+        error: err.message,
+        message: 'Ha ocurrido un error interno mientras buscaba al usuario'
+      });
+    }
+    res.status(200).send({
+      ok: true,
+      espacios: data
+    });
+  });
+}
+
+
+agregarAEspacio = (req, res) => {  
+  const {idUser, idEspacio} = req.body;
+  Usuario.agregarAEspacio(idUser, idEspacio, (err, data) => {
+    if (err)
+      res.status(500).send({
+      sucess: false,
+      error: err.message,
+      message: 'Ha ocurrido un error interno mientras se agregaba un nuevo usuario'
+      });
+    else 
+      res.status(201).send({
+      success: true,
+      message: 'Usuario agregado exitosamente'
+    });
+  });
+};
+
+
+eliminarUsuarioEspacio = (req,res) =>{
+  const {idUser, idEspacio} = req.body;  
+  Usuario.eliminarUsuarioEspacio(idUser, idEspacio, (err, data) => {
+    if (err)
+      res.status(500).send({
+      sucess: false,
+      error: err.message,
+      message: 'Ha ocurrido un error interno mientras se eliminaba al usuario'
+      });
+    else 
+      res.status(201).send({
+      success: true,
+      message: 'Usuario eliminado exitosamente'
+    });
+  });  
+};
+
+
+asignarAdmin = (req,res) =>{
+  const {idUser, idEspacio} = req.body;
+  Usuario.asignarAdmin(idUser, idEspacio, (err, data) => {
+    if (err)
+      res.status(500).send({
+      sucess: false,
+      error: err.message,
+      message: 'Ha ocurrido un error interno mientras se ejecutaba la operación'
+      });
+    else 
+      res.status(201).send({
+      success: true,
+      message: 'Operación realizada exitosamente'
+    });
+  });  
+};
+
+
+descartarAdmin = (req,res) =>{
+  const {idUser, idEspacio} = req.body;
+  Usuario.descartarAdmin(idUser, idEspacio, (err, data) => {
+    if (err)
+      res.status(500).send({
+      sucess: false,
+      error: err.message,
+      message: 'Ha ocurrido un error interno mientras se ejecutaba la operación'
+      });
+    else 
+      res.status(201).send({
+      success: true,
+      message: 'Operación realizada exitosamente'
+    });
+  });  
+};
+
   module.exports = {
       lista,
       listaUsuariosEspacio,
       crearUsuario,
       editarUsuario,
-      eliminarUsuario
+      eliminarUsuario,
+      buscarMailUsuario,
+      agregarAEspacio,
+      eliminarUsuarioEspacio,
+      asignarAdmin,
+      descartarAdmin
   }

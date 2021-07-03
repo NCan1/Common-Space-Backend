@@ -7,7 +7,12 @@ const {
     listaUsuariosEspacio,
     crearUsuario,
     editarUsuario,
-    eliminarUsuario
+    eliminarUsuario,
+    buscarMailUsuario,
+    agregarAEspacio,
+    eliminarUsuarioEspacio,
+    asignarAdmin,
+    descartarAdmin
 } = require ('../controllers/usuario-controller');
 
 
@@ -21,6 +26,16 @@ router.post('/crear-usuario', crearUsuario);
 router.put('/editar-usuario/:id', editarUsuario);
 
 router.delete('/eliminar-usuario/:id', eliminarUsuario);
+
+router.get('/busca-mail-usuario', buscarMailUsuario );
+
+router.post('/agregar-usuario-espacio', agregarAEspacio);
+
+router.delete('/eliminar-usuario-espacio', eliminarUsuarioEspacio);
+
+router.put('/asignar-admin', asignarAdmin);
+
+router.put('/descartar-admin', descartarAdmin);
 
 
 
