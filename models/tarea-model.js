@@ -66,7 +66,7 @@ Tarea.realizarTarea = (ids, result) =>{
     const data = {
         Fecha: new Date(),
         ID_Tarea: ids.idTarea,
-        ID_Usuario: ids.idUsuario
+        ID_Usuario: ids.idUser
     };
   
     const consulta = ("INSERT INTO usuarios_tareas SET ? ");
@@ -103,7 +103,7 @@ Tarea.realizadasUsuarioEspacio = (ids, result) => {
     const sentencia2 = (" JOIN tareas_espacios AS te ON te.ID_Tarea=t.ID_Tarea")
     const sentencia3 = (" JOIN usuarios_tareas AS ut ON ut.ID_Tarea=t.ID_Tarea")
     const sentencia4 = (" JOIN categorias AS c ON c.ID_Categoria=t.ID_Categoria JOIN usuarios AS u ON u.ID_Usuario=ut.ID_Usuario")
-    const sentencia5 = (" WHERE te.ID_Espacio=" + ids.idEspacio +" AND u.ID_Usuario="+ ids.idUsuario +" AND t.Estado=1")
+    const sentencia5 = (" WHERE te.ID_Espacio=" + ids.idEspacio +" AND u.ID_Usuario="+ ids.idUser +" AND t.Estado=1")
     const consulta = ( sentencia1+sentencia2+sentencia3+sentencia4+sentencia5);
     sql.query(consulta , (err, res) => {
         if (err) {

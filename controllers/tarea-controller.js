@@ -4,8 +4,8 @@ const Tarea = require('../models/tarea-model');
 
 
 listaEspacio = (req, res) => {
-  const {id} = req.params;
-  Tarea.listaEspacio(id, (err, data) => {
+  const {idEspacio} = req.params;
+  Tarea.listaEspacio(idEspacio, (err, data) => {
     if (err) {
       return res.status(500).send({
         ok: false,

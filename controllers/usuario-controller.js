@@ -31,7 +31,7 @@ listaUsuariosEspacio = (req, res) => {
     }
     res.status(200).send({
       ok: true,
-      espacios: data
+      usuarios: data
     });
   });
 }
@@ -104,7 +104,7 @@ buscarMailUsuario = (req, res) => {
     }
     res.status(200).send({
       ok: true,
-      espacios: data
+      usuario: data
     });
   });
 }

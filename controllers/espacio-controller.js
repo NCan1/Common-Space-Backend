@@ -4,8 +4,8 @@ const Espacio = require('../models/espacio-model');
 
 
 listaEspaciosUsuario = (req, res) => {
-    const {id} = req.params;
-    Espacio.listaEspaciosUsuario(id, (err, data) => {
+    const {idUser} = req.params;
+    Espacio.listaEspaciosUsuario(idUser, (err, data) => {
       if (err) {
         return res.status(500).send({
           ok: false,
