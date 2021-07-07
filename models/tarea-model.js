@@ -81,12 +81,12 @@ Tarea.realizarTarea = (ids, result) =>{
 }
 
 
-Tarea.listaRealizadasEspacio = (ids, result) => {
+Tarea.listaRealizadasEspacio = (idEspacio, result) => {
     const sentencia1 = ("SELECT t.nombre tarea, t.Puntaje puntaje, t.descripcion descripcion, c.Nombre categoria, u.Nombre user, ut.Fecha fecha FROM tareas AS t"); 
     const sentencia2 = (" JOIN tareas_espacios AS te ON te.ID_Tarea=t.ID_Tarea")
     const sentencia3 = (" JOIN usuarios_tareas AS ut ON ut.ID_Tarea=t.ID_Tarea")
     const sentencia4 = (" JOIN categorias AS c ON c.ID_Categoria=t.ID_Categoria JOIN usuarios AS u ON u.ID_Usuario=ut.ID_Usuario")
-    const sentencia5 = (" WHERE te.ID_Espacio=" + IdEspacio +" AND t.Estado=1")
+    const sentencia5 = (" WHERE te.ID_Espacio=" + idEspacio +" AND t.Estado=1")
     const consulta = ( sentencia1+sentencia2+sentencia3+sentencia4+sentencia5);
     sql.query(consulta , (err, res) => {
         if (err) {

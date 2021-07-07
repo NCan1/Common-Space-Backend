@@ -1,7 +1,43 @@
 const Usuario = require('../models/usuario-model');
+const { generarJWT } = require('../helpers/generar-jwt');
 
 
 
+login = (req, res) => {
+  const usuario = req.body;
+  Usuario.login(usuario, async (err, data) => {
+
+    if (err) {
+      if(err==="not_found"){
+        return res.status(404).send({
+          ok: false,
+          message: 'Mail Incorrecto'
+        });
+      }else if (err==="bad_pass"){
+        return res.status(401).send({
+          ok: false,
+          message: `Contraseña Incorrecta`
+        });
+      }else{
+        return res.status(500).send({
+          ok: false,
+          error: err.message,
+          message: 'Ha ocurrido un error interno mientras se solicitaba la lista de usuarios'
+        });
+      }
+    }
+
+    const token = await generarJWT( {idUser: data[0].ID_Usuario} );
+    const {ID_Usuario, Password, Estado, ...dataFront} = data[0];
+    dataFront.idUser= ID_Usuario;
+    res.status(200).send({
+      ok: true,
+      user: dataFront,
+      token
+    });
+
+  });
+}
 
 lista = (req, res) => {
   Usuario.lista((err, usuarioDB) => {
@@ -182,6 +218,7 @@ descartarAdmin = (req,res) =>{
 };
 
   module.exports = {
+      login,
       lista,
       listaUsuariosEspacio,
       crearUsuario,

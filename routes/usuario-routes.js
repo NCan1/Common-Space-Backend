@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 const {check} = require ("express-validator");
 
+
 const {validarCampos} = require('../middlewares/validar-campos');
+const { validarJWT } = require("../middlewares/validar-jwt");
+
 const {existeEmailUsuario, existeUsuarioPorId} = require('../helpers/validaciones-db/validaciones-usuario');
 const { existeEspacioPorId } = require("../helpers/validaciones-db/validaciones-espacio");
-
 
 
 const {
@@ -18,12 +20,17 @@ const {
     agregarAEspacio,
     eliminarUsuarioEspacio,
     asignarAdmin,
-    descartarAdmin
+    descartarAdmin,
+    login
 } = require ('../controllers/usuario-controller');
 
 
 
-router.get('/lista-usuarios', lista );
+router.post('/login', login );
+
+router.get('/lista-usuarios',[
+    validarJWT
+], lista );
 
 router.get('/lista-usuarios-espacio/:idEspacio',[
     check('idEspacio').custom(existeEspacioPorId),
